@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Thank you, " + Model.Title + " has been added!";
+}
+
+@model movies.Models.AppResponse; 
+
+<div>
+    <p>Good job</p>
+    @if (Model.Title == "Independence Day")
+    {
+        @:Rocky IV is actually the "most american movie ever made"
+    }
+    else
+    {
+        @:Thank you for your submission
+    }
+    <p>You can view all the movies <a asp-action="moviesList">here</a></p>
+</div>
