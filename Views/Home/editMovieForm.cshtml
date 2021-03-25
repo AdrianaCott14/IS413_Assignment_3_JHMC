@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Enter your movies";
+}
+
+@model movies.Models.AppResponse
+    <div>
+        <form asp-action="editMovie" method="post" asp-controller="Home">
+            <div>
+                <label asp-for="@Model.Title">Movie Title</label>
+                <input asp-for="@Model.Title" required />
+            </div>
+            <div>
+                <label asp-for="@Model.Category">Category</label>
+                <input asp-for="@Model.Category" required />
+            </div>
+            <div>
+                <label asp-for="@Model.Year">Year</label>
+                <input asp-for="@Model.Year" required />
+            </div>
+            <div>
+                <label asp-for="@Model.Director">Director</label>
+                <input asp-for="@Model.Director" required />
+            </div>
+            <div>
+                <label asp-for="@Model.Rating">Rating</label>
+                <select asp-for="@Model.Rating" required>
+                    <option value="G">G</option>
+                    <option value="PG">PG</option>
+                    <option value="PG13">PG-13</option>
+                    <option value="R">R</option>
+                </select>
+            </div>
+            <div>
+                <label asp-for="@Model.Edited">Edited</label>
+                <select asp-for="@Model.Edited">
+                    <option value="">Select one</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div>
+                <label asp-for="@Model.LentTo">Lent To?</label>
+                <input asp-for="@Model.LentTo" />
+            </div>
+            <div>
+                <label asp-for="@Model.Notes">Notes</label><br />
+                <textarea asp-for="@Model.Notes" rows="4" cols="50"></textarea>
+            </div>
+            <button type="submit">Update</button>
+            <input type="hidden" value="@Model.MovieID" name="movieId" />
+        </form>
+    </div>

@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using movies.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,12 @@ namespace movies
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //add context to the connection string
+            services.AddDbContext<MoviesDBContext>(options =>
+            {
+              options.UseSqlite(Configuration["ConnectionStrings:MoviesConnection"]);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,9 +56,13 @@ namespace movies
 
             app.UseEndpoints(endpoints =>
             {
+                //add a more user friendly endpoint for the movie form
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    "movieApp",
+                    "AddMovieForm/",
+                    new { Controller = "Home", action = "movieApp" });
+
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }

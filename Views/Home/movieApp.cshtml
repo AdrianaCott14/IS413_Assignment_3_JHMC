@@ -2,49 +2,52 @@
     ViewBag.Title = "Enter your movies";
 }
 
-@model  movies.Models.AppResponse; 
+@model  movies.Models.ViewModels.MovieFormViewModel
 
-<form asp-action="movieApp" method="post">
-    <div>
-        <label asp-for="Title">Movie Title</label>
-        <input asp-for="Title" required/>
-    </div>
-    <div>
-        <label asp-for="Category">Category</label>
-        <input asp-for="Category" required/>
-    </div>
-    <div>
-        <label asp-for="Year">Year</label>
-        <input asp-for="Year" required/>
-    </div>
-    <div>
-        <label asp-for="Director">Director</label>
-        <input asp-for="Director" required/>
-    </div>
-    <div>
-        <label asp-for="Rating">Rating</label>
-        <select asp-for="Rating" required>
-            <option value="G">G</option>
-            <option value="PG">PG</option>
-            <option value="PG13">PG-13</option>
-            <option value="R">R</option>
-        </select>
-    </div>
-    <div>
-        <label asp-for="Edited">Edited</label>
-        <select asp-for="Edited" >
-            <option value="">Select one</option>
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-        </select>
-    </div>
-    <div>
-        <label asp-for="LentTo">Lent To?</label>
-        <input asp-for="LentTo" />
-    </div>
-    <div>
-        <label asp-for="Notes">Notes</label><br />
-        <textarea asp-for="Notes" rows="4" cols="50"></textarea>
-    </div>
-    <button type="submit">Add</button>
-</form>
+<div class="container" style="border: solid 2px black; padding: 25px;" > 
+    <form asp-action="movieApp" method="post" asp-controller="Home">
+        <div>
+            <label asp-for="@Model.Movie.Title">Movie Title</label>
+            <input asp-for="@Model.Movie.Title" required />
+        </div>
+        <div>
+            <label asp-for="@Model.Movie.Category">Category</label>
+            <input asp-for="@Model.Movie.Category" required />
+        </div>
+        <div>
+            <label asp-for="@Model.Movie.Year">Year</label>
+            <input asp-for="@Model.Movie.Year" required />
+        </div>
+        <div>
+            <label asp-for="@Model.Movie.Director">Director</label>
+            <input asp-for="@Model.Movie.Director" required />
+        </div>
+        <div>
+            <label asp-for="@Model.Movie.Rating">Rating</label>
+            <select asp-for="@Model.Movie.Rating" required>
+                <option value="G">G</option>
+                <option value="PG">PG</option>
+                <option value="PG13">PG-13</option>
+                <option value="R">R</option>
+            </select>
+        </div>
+        <div>
+            <label asp-for="@Model.Movie.Edited">Edited</label>
+            <select asp-for="@Model.Movie.Edited">
+                <option value="">Select one</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <div>
+            <label asp-for="@Model.Movie.LentTo">Lent To?</label>
+            <input asp-for="@Model.Movie.LentTo" />
+        </div>
+        <div>
+            <label asp-for="@Model.Movie.Notes">Notes</label><br />
+            <textarea asp-for="@Model.Movie.Notes" rows="4" cols="50"></textarea>
+        </div>
+        <button type="submit">Add</button>
+    </form>
+</div>
+

@@ -8,6 +8,10 @@ namespace movies.Models
 {
     public class AppResponse
     {
+        [Key]
+        [Required]
+        public int MovieID { get; set; }
+
         [Required]
         public string Title { get; set; }
 
@@ -27,7 +31,7 @@ namespace movies.Models
 
         public string LentTo { get; set; }
 
-        [StringLength(4, ErrorMessage = "You have exceeded to max amount of characters (25)")]
+        [StringLength(25, ErrorMessage = "You have exceeded to max amount of characters (25)")]
         public string Notes { get; set; }
     }
 }
